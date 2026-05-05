@@ -52,14 +52,16 @@ export const scalerWebsiteTemplate = {
             <h2>Our Popular Courses</h2>
             <div class="courses-grid">
                 <div class="course-card">
-                    <div class="course-icon"></div>
+                    <div class="course-icon">🐍</div>
                     <h3>Python Fundamentals</h3>
                     <p>Complete Python programming from basics to advanced</p>
+                    <button class="course-btn" onclick="showCourseDetails('Python Fundamentals', 'Learn Python from scratch to advanced level')">Explore</button>
                 </div>
                 <div class="course-card">
                     <div class="course-icon">🎯</div>
                     <h3>Interview Prep</h3>
                     <p>Crack your tech interviews with guided practice</p>
+                    <button class="course-btn" onclick="showCourseDetails('Interview Prep', 'Master interview questions and coding problems')">Explore</button>
                 </div>
             </div>
         </div>
@@ -605,6 +607,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Course details function
+function showCourseDetails(courseName, courseDescription) {
+    alert('Course: ' + courseName + '\\n\\n' + courseDescription + '\\n\\nAvailable for enrollment now!');
+}
 
 // Button interactions
 document.querySelectorAll('button').forEach(button => {

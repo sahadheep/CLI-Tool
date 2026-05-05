@@ -12,6 +12,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Course details function
+function showCourseDetails(courseName, courseDescription) {
+    alert('Course: ' + courseName + '\n\n' + courseDescription + '\n\nAvailable for enrollment now!');
+}
+
 // Button interactions
 document.querySelectorAll('button').forEach(button => {
     button.addEventListener('mouseenter', function () {
