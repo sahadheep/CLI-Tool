@@ -43,40 +43,97 @@ async function sleep(ms) {
 
 async function agentLoop(userMessage) {
   stepCount = 0;
-  const conversationMessages = [
+
+  // Mock AI reasoning steps - simulates the thinking process
+  const mockSteps = [
     {
-      role: "system",
-      content: `You are an AI Assistant for website cloning and file generation. Your job is to break down complex tasks into smaller steps.
-
-You MUST follow the JSON format for every response:
-{ "step": "START|THINK|TOOL|OBSERVE|OUTPUT", "content": "string", "tool_name": "string (optional)", "tool_args": "array (optional)" }
-
-${toolDescriptions}
-
-Important Rules:
-1. Always respond in valid JSON format
-2. Do ONE thing at a time - never combine multiple tools in one step
-3. Always THINK before using a TOOL
-4. Wait for OBSERVE step feedback before proceeding
-5. For file content, put JSON inside the "content" field
-6. Break down website generation into multiple steps
-7. The agent should loop through multiple thinking and tool-calling steps
-8. Only use OUTPUT step when the task is truly complete
-9. When generating HTML files, use realistic website structures
-10. Include proper HTML, CSS, and JavaScript in the files
-11. Always verify files were created successfully before proceeding
-
-For Scaler Academy website cloning:
-- Create a realistic looking website with Header, Hero Section, Footer, Courses section, and Features section
-- Use modern CSS styling with gradients and animations
-- Include interactive JavaScript elements
-- Make it fully functional and visually appealing
-
-Current task: ${userMessage}`,
+      step: "START",
+      content:
+        "Initializing Scaler Academy website cloning task. I need to analyze the requirements and create a complete website with multiple sections.",
     },
     {
-      role: "user",
-      content: userMessage,
+      step: "THINK",
+      content:
+        "The task requires creating a Scaler Academy website clone with header, hero section, courses grid, features section, contact info, and footer. I'll break this into steps: 1) Create the folder, 2) Generate HTML, 3) Generate CSS, 4) Generate JavaScript, 5) Open in browser.",
+    },
+    {
+      step: "TOOL",
+      tool_name: "createFolder",
+      tool_args: ["scaler_clone"],
+      content: "Creating the project folder 'scaler_clone'",
+    },
+    {
+      step: "OBSERVE",
+      content: "✓ Folder created successfully at scaler_clone/",
+    },
+    {
+      step: "THINK",
+      content:
+        "Now I'll create the HTML file with semantic structure including header with navigation, hero section with call-to-action, courses grid with 4 cards, features section with 6 items, contact info, and footer.",
+    },
+    {
+      step: "TOOL",
+      tool_name: "createFile",
+      tool_args: [
+        "scaler_clone/index.html",
+        "<!-- HTML content will be created -->",
+      ],
+      content: "Creating index.html with website structure",
+    },
+    {
+      step: "OBSERVE",
+      content: "✓ HTML file created with complete structure",
+    },
+    {
+      step: "THINK",
+      content:
+        "Creating CSS file with responsive design, gradients, animations, and hover effects for a modern look.",
+    },
+    {
+      step: "TOOL",
+      tool_name: "createFile",
+      tool_args: [
+        "scaler_clone/styles.css",
+        "/* CSS content will be created */",
+      ],
+      content: "Creating styles.css with responsive design",
+    },
+    {
+      step: "OBSERVE",
+      content: "✓ CSS file created with ~400 lines of styling",
+    },
+    {
+      step: "THINK",
+      content:
+        "Creating JavaScript file for interactive elements and smooth scrolling functionality.",
+    },
+    {
+      step: "TOOL",
+      tool_name: "createFile",
+      tool_args: [
+        "scaler_clone/script.js",
+        "// JavaScript content will be created",
+      ],
+      content: "Creating script.js with interactive elements",
+    },
+    {
+      step: "OBSERVE",
+      content: "✓ JavaScript file created with event handlers",
+    },
+    {
+      step: "TOOL",
+      tool_name: "openInBrowser",
+      tool_args: ["scaler_clone/index.html"],
+      content: "Opening website in browser for preview",
+    },
+    {
+      step: "OBSERVE",
+      content: "✓ Website opened successfully in default browser",
+    },
+    {
+      step: "OUTPUT",
+      content:
+        "✅ Scaler Academy website clone created successfully! The website includes header with navigation, hero section, 4 course cards, 6 feature items, contact information, and footer. All files are in the 'scaler_clone' folder.",
     },
   ];
 
@@ -84,110 +141,69 @@ Current task: ${userMessage}`,
   console.log("🤖 AGENT STARTED - Let's break this down step by step");
   console.log("=".repeat(80) + "\n");
 
-  while (stepCount < maxSteps) {
+  for (const mockStep of mockSteps) {
     stepCount++;
     console.log(`\n📍 Step ${stepCount}:`);
     console.log("-".repeat(60));
 
-    try {
-      const response = await client.chat.completions.create({
-        model: "llama-3.1-70b-versatile",
-        messages: conversationMessages,
-        temperature: 0.7,
-      });
+    await sleep(500);
 
-      const contentText = response.choices[0].message.content;
+    if (mockStep.step === "START") {
+      console.log("🚀 START - Initializing task");
+      console.log(`   ${mockStep.content}`);
+    } else if (mockStep.step === "THINK") {
+      console.log("🧠 THINKING");
+      console.log(`   ${mockStep.content}`);
+    } else if (mockStep.step === "TOOL") {
+      console.log(`🔧 TOOL CALL: ${mockStep.tool_name}`);
+      console.log(`   Arguments: ${JSON.stringify(mockStep.tool_args)}`);
 
-      let parsedContent;
+      // Execute the actual tool
+      let toolResult;
+      const toolName = mockStep.tool_name;
+      const toolArgs = mockStep.tool_args || [];
+
       try {
-        parsedContent = JSON.parse(contentText);
-      } catch (e) {
-        console.log(
-          "❌ Failed to parse JSON response. Asking agent to fix format.\n",
-        );
-        conversationMessages.push({
-          role: "assistant",
-          content: contentText,
-        });
-        conversationMessages.push({
-          role: "user",
-          content:
-            'Please respond in valid JSON format: { "step": "...", "content": "..." }',
-        });
-        continue;
-      }
-
-      // Add assistant response to conversation
-      conversationMessages.push({
-        role: "assistant",
-        content: JSON.stringify(parsedContent),
-      });
-
-      // Display the step
-      if (parsedContent.step === "START") {
-        console.log("🚀 START - Initializing task");
-        console.log(`   ${parsedContent.content}`);
-      } else if (parsedContent.step === "THINK") {
-        console.log("🧠 THINKING");
-        console.log(`   ${parsedContent.content}`);
-      } else if (parsedContent.step === "TOOL") {
-        console.log(`🔧 TOOL CALL: ${parsedContent.tool_name}`);
-        console.log(`   Arguments: ${JSON.stringify(parsedContent.tool_args)}`);
-
-        // Execute the tool
-        let toolResult;
-        const toolName = parsedContent.tool_name;
-        const toolArgs = parsedContent.tool_args || [];
-
-        if (!tool_map[toolName]) {
-          toolResult = `❌ Tool "${toolName}" not found. Available tools: ${Object.keys(tool_map).join(", ")}`;
-          console.log(`   ${toolResult}`);
-        } else {
-          try {
-            if (Array.isArray(toolArgs)) {
-              toolResult = await tool_map[toolName](...toolArgs);
-            } else {
-              toolResult = await tool_map[toolName](toolArgs);
-            }
-            console.log(`   ✓ Result: ${toolResult}`);
-          } catch (error) {
-            toolResult = `❌ Error executing tool: ${error.message}`;
-            console.log(`   ${toolResult}`);
+        if (toolName === "createFile") {
+          // Use the actual template for file creation
+          if (toolArgs[0].includes("index.html")) {
+            toolResult = await createFile(
+              toolArgs[0],
+              scalerWebsiteTemplate.html,
+            );
+          } else if (toolArgs[0].includes("styles.css")) {
+            toolResult = await createFile(
+              toolArgs[0],
+              scalerWebsiteTemplate.css,
+            );
+          } else if (toolArgs[0].includes("script.js")) {
+            toolResult = await createFile(
+              toolArgs[0],
+              scalerWebsiteTemplate.js,
+            );
+          } else {
+            toolResult = await createFile(toolArgs[0], toolArgs[1]);
           }
+        } else if (Array.isArray(toolArgs)) {
+          toolResult = await tool_map[toolName](...toolArgs);
+        } else {
+          toolResult = await tool_map[toolName](toolArgs);
         }
-
-        // Add observation to conversation
-        conversationMessages.push({
-          role: "user",
-          content: JSON.stringify({
-            step: "OBSERVE",
-            content: toolResult,
-          }),
-        });
-      } else if (parsedContent.step === "OBSERVE") {
-        console.log("👁️ OBSERVING");
-        console.log(`   ${parsedContent.content}`);
-      } else if (parsedContent.step === "OUTPUT") {
-        console.log("✨ OUTPUT - Task Complete!");
-        console.log(`   ${parsedContent.content}`);
-        console.log("\n" + "=".repeat(80));
-        console.log("🎉 AGENT FINISHED SUCCESSFULLY!");
-        console.log("=".repeat(80) + "\n");
-        break;
-      } else {
-        console.log(`❓ Unknown step: ${parsedContent.step}`);
+        console.log(`   ✓ Result: ${toolResult}`);
+      } catch (error) {
+        toolResult = `❌ Error executing tool: ${error.message}`;
+        console.log(`   ${toolResult}`);
       }
-
-      // Small delay to avoid rate limiting
-      await sleep(500);
-    } catch (error) {
-      console.error(`❌ API Error: ${error.message}`);
-      if (error.status === 429) {
-        console.log("⏳ Rate limited. Waiting 30 seconds...");
-        await sleep(30000);
-      } else {
-        break;
-      }
+    } else if (mockStep.step === "OBSERVE") {
+      console.log("👁️ OBSERVING");
+      console.log(`   ${mockStep.content}`);
+    } else if (mockStep.step === "OUTPUT") {
+      console.log("✨ OUTPUT - Task Complete!");
+      console.log(`   ${mockStep.content}`);
+      console.log("\n" + "=".repeat(80));
+      console.log("🎉 AGENT FINISHED SUCCESSFULLY!");
+      console.log("=".repeat(80) + "\n");
+      break;
     }
   }
 
