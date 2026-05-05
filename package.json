@@ -2,14 +2,14 @@
   "name": "cil-ai-agent",
   "version": "1.0.0",
   "description": "CLI AI Agent that clones websites by generating HTML, CSS, and JavaScript",
-  "main": "index.js",
+  "main": "cli.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "node --watch index.js",
-    "demo": "node demo.js",
-    "generate": "node generate-website.js",
-    "build": "node generate-website.js"
+    "start": "node cli.js",
+    "dev": "node --watch cli.js",
+    "demo": "node demo-mode.js",
+    "generate": "node generate-site.js",
+    "build": "node generate-site.js"
   },
   "keywords": [
     "ai",

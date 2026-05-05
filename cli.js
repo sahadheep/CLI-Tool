@@ -5,9 +5,9 @@ import {
   createFile,
   readFile,
   listDirectory,
-} from "./tools/fileGenerator.js";
+} from "./tools/fsGenerator.js";
 import { executeCommand, openInBrowser } from "./tools/executor.js";
-import scalerWebsiteTemplate from "./templates/scaler.js";
+import scalerWebsiteTemplate from "./templates/scalerTemplate.js";
 import path from "path";
 import { fileURLToPath } from "url";
 

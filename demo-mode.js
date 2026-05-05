@@ -4,9 +4,9 @@ import {
   createFile,
   readFile,
   listDirectory,
-} from "./tools/fileGenerator.js";
+} from "./tools/fsGenerator.js";
 import { executeCommand, openInBrowser } from "./tools/executor.js";
-import scalerWebsiteTemplate from "./templates/scaler.js";
+import scalerWebsiteTemplate from "./templates/scalerTemplate.js";
 
 // Tool map - maps tool names to their implementations
 const tool_map = {

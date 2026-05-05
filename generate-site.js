@@ -1,6 +1,6 @@
-import { createFolder, createFile } from "./tools/fileGenerator.js";
+import { createFolder, createFile } from "./tools/fsGenerator.js";
 import { openInBrowser } from "./tools/executor.js";
-import scalerWebsiteTemplate from "./templates/scaler.js";
+import scalerWebsiteTemplate from "./templates/scalerTemplate.js";
 import path from "path";
 
 async function generateScalerWebsite() {
