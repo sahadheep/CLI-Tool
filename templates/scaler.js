@@ -55,13 +55,11 @@ export const scalerWebsiteTemplate = {
                     <div class="course-icon"></div>
                     <h3>Python Fundamentals</h3>
                     <p>Complete Python programming from basics to advanced</p>
-                    <button>Explore</button>
                 </div>
                 <div class="course-card">
                     <div class="course-icon">🎯</div>
                     <h3>Interview Prep</h3>
                     <p>Crack your tech interviews with guided practice</p>
-                    <button>Explore</button>
                 </div>
             </div>
         </div>
