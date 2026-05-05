@@ -52,19 +52,7 @@ export const scalerWebsiteTemplate = {
             <h2>Our Popular Courses</h2>
             <div class="courses-grid">
                 <div class="course-card">
-                    <div class="course-icon">📚</div>
-                    <h3>DSA in Java</h3>
-                    <p>Master Data Structures and Algorithms using Java</p>
-                    <button>Explore</button>
-                </div>
-                <div class="course-card">
-                    <div class="course-icon">💻</div>
-                    <h3>Web Development</h3>
-                    <p>Learn HTML, CSS, JavaScript and modern frameworks</p>
-                    <button>Explore</button>
-                </div>
-                <div class="course-card">
-                    <div class="course-icon">🐍</div>
+                    <div class="course-icon"></div>
                     <h3>Python Fundamentals</h3>
                     <p>Complete Python programming from basics to advanced</p>
                     <button>Explore</button>
