@@ -15,16 +15,20 @@ This is a complete implementation of the Assignment 02 requirements:
 ## What You're Submitting
 
 ### 1. GitHub Repository (Public)
+
 **Repository Link**: `https://github.com/YOUR_USERNAME/cil-ai-agent`
 
 **What it contains:**
+
 - All source code
 - Documentation (README, QUICKSTART, etc.)
 - Example output (generated website)
 - GitHub setup instructions
 
 ### 2. YouTube Video (2-3 minutes)
+
 **What to show:**
+
 - Opening the project in terminal
 - Running the agent with a task
 - Agent reasoning through multiple steps
@@ -45,6 +49,7 @@ This is a complete implementation of the Assignment 02 requirements:
    - Do NOT initialize with README (we have files already)
 
 3. In your local project directory, run:
+
 ```bash
 git remote add origin https://github.com/YOUR_USERNAME/cil-ai-agent.git
 git branch -M main
@@ -58,9 +63,11 @@ git push -u origin main
 1. Get API key from: https://platform.openai.com/api-keys
 2. Edit `.env` file in the project
 3. Add your key:
+
 ```
 OPENAI_API_KEY=sk-your-actual-key-here
 ```
+
 4. **DO NOT commit .env file** (it's in .gitignore)
 
 ### Step 3: Test Everything Works
@@ -82,11 +89,13 @@ npm start
 ### Step 4: Record YouTube Video
 
 Requirements:
+
 - **Length**: 2-3 minutes
 - **Visibility**: Public or Unlisted
 - **Content**: Show the full workflow
 
 **What to include:**
+
 1. **Introduction (0:00-0:30)**
    - What is this project about?
    - Show the project structure
@@ -112,10 +121,12 @@ Requirements:
    - Thank you message
 
 **Recording Tools:**
+
 - Windows: Use built-in Xbox Game Bar (Win + G)
 - Or download free tools: OBS Studio, Camtasia, etc.
 
 **Upload to YouTube:**
+
 1. Go to https://www.youtube.com/upload
 2. Upload your video
 3. Set to "Unlisted" or "Public"
@@ -127,6 +138,7 @@ Requirements:
 On the course submission portal, provide:
 
 1. **GitHub Repository Link**
+
    ```
    https://github.com/YOUR_USERNAME/cil-ai-agent
    ```
@@ -168,6 +180,7 @@ Before submitting, verify you have:
 Your submission will be evaluated on:
 
 ### 1. GitHub Repository (2 Points)
+
 - ✅ Repository is public
 - ✅ All files present
 - ✅ README is clear and well-written
@@ -175,6 +188,7 @@ Your submission will be evaluated on:
 - ✅ .gitignore prevents committing sensitive files
 
 ### 2. YouTube Demo Video (2 Points)
+
 - ✅ Video is 2-3 minutes
 - ✅ Shows agent running
 - ✅ Shows multiple reasoning steps
@@ -183,6 +197,7 @@ Your submission will be evaluated on:
 - ✅ Clear and audible narration
 
 ### 3. Agent Loop & Reasoning (2 Points)
+
 - ✅ Agent follows INPUT → THINK → TOOL → OBSERVE → OUTPUT
 - ✅ Agent takes multiple steps (not all at once)
 - ✅ Each step is clearly shown in output
@@ -190,6 +205,7 @@ Your submission will be evaluated on:
 - ✅ Tool calls are correct and verified
 
 ### 4. Quality of Cloned Website (2 Points)
+
 - ✅ Has header with navigation
 - ✅ Has hero section with call-to-action
 - ✅ Has footer with links
@@ -200,6 +216,7 @@ Your submission will be evaluated on:
 - ✅ Resembles Scaler Academy website
 
 ### 5. Code Quality & Documentation (2 Points)
+
 - ✅ Code is clean and readable
 - ✅ Proper error handling
 - ✅ Comments explain complex logic
@@ -214,21 +231,25 @@ Your submission will be evaluated on:
 ## Common Issues & Solutions
 
 ### "API Key not working"
+
 - Verify API key at https://platform.openai.com/api-keys
 - Check that .env file has the correct key
 - Make sure you're not exceeding API quota
 
 ### "Files not creating"
+
 - Check file permissions
 - Verify disk space available
 - Check if scaler_website folder needs permission changes
 
 ### "Video won't record"
+
 - Use OBS Studio (free): https://obsproject.com/
 - Or Windows Game Bar: Win + G
 - Make sure microphone is working
 
 ### "GitHub push fails"
+
 - Follow GITHUB_SETUP.md instructions
 - Use personal access token if authentication fails
 - Make sure remote URL is correct
