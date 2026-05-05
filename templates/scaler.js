@@ -679,13 +679,13 @@ window.addEventListener('scroll', () => {
         if (!confirm(intro)) return;
 
         const q1 = prompt('Question 1: Describe the difference between an array and a linked list.');
-        alert('Thanks — concise answer saved.\n\nNext question.');
+        alert('Thanks — concise answer saved.\\n\\nNext question.');
 
         const q2 = prompt('Question 2: How would you find the middle node of a linked list in one pass?');
-        alert('Nice.\n\nFinal question.');
+        alert('Nice.\\n\\nFinal question.');
 
         const q3 = prompt('Question 3: Give a short strategy for preparing for system design interviews.');
-        alert('Demo complete — good job!\n\n(For full AI feedback, add your API key to the deployment to enable the real assistant.)');
+        alert('Demo complete — good job!\\n\\n(For full AI feedback, add your API key to the deployment to enable the real assistant.)');
     }
 
     console.log('Scaler Academy Clone - Website Loaded Successfully');
