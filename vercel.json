@@ -1,0 +1,10 @@
+{
+  "builds": [
+    {
+      "src": "generate-website.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "outputDirectory": "scaler_website",
+  "cleanUrls": true
+}
