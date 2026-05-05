@@ -22,7 +22,6 @@ export const scalerWebsiteTemplate = {
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <button class="cta-button">Sign In</button>
         </div>
     </header>
 
