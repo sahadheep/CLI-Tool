@@ -1,5 +1,4 @@
 import "dotenv/config";
-import Groq from "groq-sdk";
 import {
   createFolder,
   createFile,
@@ -8,10 +7,6 @@ import {
 } from "./tools/fileGenerator.js";
 import { executeCommand, openInBrowser } from "./tools/executor.js";
 import scalerWebsiteTemplate from "./templates/scaler.js";
-
-const client = new Groq({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 // Tool map - maps tool names to their implementations
 const tool_map = {
@@ -22,17 +17,6 @@ const tool_map = {
   executeCommand: executeCommand,
   openInBrowser: openInBrowser,
 };
-
-// Tool descriptions for the system prompt
-const toolDescriptions = `
-Available Tools:
-1. createFolder(folderPath: string) - Creates a folder at the specified path
-2. createFile(filePath: string, content: string) - Creates a file with the given content
-3. readFile(filePath: string) - Reads and returns the content of a file
-4. listDirectory(dirPath: string) - Lists all files and folders in a directory
-5. executeCommand(cmd: string) - Executes a system command
-6. openInBrowser(filePath: string) - Opens a file in the default browser
-`;
 
 let stepCount = 0;
 let maxSteps = 50;
