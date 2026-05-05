@@ -55,13 +55,13 @@ export const scalerWebsiteTemplate = {
                     <div class="course-icon">🐍</div>
                     <h3>Python Fundamentals</h3>
                     <p>Complete Python programming from basics to advanced</p>
-                    <button class="course-btn" onclick="showCourseDetails('Python Fundamentals', 'Learn Python from scratch to advanced level')">Explore</button>
+                    <a class="course-btn" href="python-fundamentals.html">Explore</a>
                 </div>
                 <div class="course-card">
                     <div class="course-icon">🎯</div>
                     <h3>Interview Prep</h3>
                     <p>Crack your tech interviews with guided practice</p>
-                    <button class="course-btn" onclick="showCourseDetails('Interview Prep', 'Master interview questions and coding problems')">Explore</button>
+                    <a class="course-btn" href="interview-prep.html">Explore</a>
                 </div>
             </div>
         </div>
@@ -156,7 +156,6 @@ export const scalerWebsiteTemplate = {
     <script src="script.js"></script>
 </body>
 </html>`,
-
   css: `/* Global Styles */
 * {
     margin: 0;
@@ -365,9 +364,11 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.course-card button {
+.course-card .course-btn {
+    display: inline-block;
     background-color: #ff6b6b;
     color: white;
+    text-decoration: none;
     border: none;
     padding: 0.7rem 1.5rem;
     border-radius: 5px;
@@ -376,11 +377,9 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.course-card button:hover {
+.course-card .course-btn:hover {
     background-color: #ff5252;
 }
-
-/* Features Section */
 .features {
     padding: 5rem 0;
     background-color: white;
@@ -676,6 +675,48 @@ window.addEventListener('scroll', () => {
 
 console.log('Scaler Academy Clone - Website Loaded Successfully');
 `,
-};
 
+  pythonHtml: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Python Fundamentals — Scaler Clone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container"><div class="logo"><span class="logo-text">Scaler</span></div></div>
+    </header>
+    <section class="container" style="padding:4rem 20px;">
+        <h1>Python Fundamentals</h1>
+        <p>Complete Python programming from basics to advanced. This course covers syntax, data structures, OOP, and practical projects.</p>
+        <p><a class="course-btn" href="index.html">Back to Home</a></p>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>`,
+
+  interviewHtml: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Interview Prep — Scaler Clone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container"><div class="logo"><span class="logo-text">Scaler</span></div></div>
+    </header>
+    <section class="container" style="padding:4rem 20px;">
+        <h1>Interview Prep</h1>
+        <p>Master interview questions, system design basics, and coding problem strategies to succeed in technical interviews.</p>
+        <p><a class="course-btn" href="index.html">Back to Home</a></p>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
+`,
+};
 export default scalerWebsiteTemplate;

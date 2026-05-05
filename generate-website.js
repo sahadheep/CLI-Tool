@@ -39,6 +39,19 @@ async function generateScalerWebsite() {
       scalerWebsiteTemplate.js,
     );
 
+    // Create course detail pages
+    console.log("📄 Creating python-fundamentals.html...");
+    await createFile(
+      path.join(outputDir, "python-fundamentals.html"),
+      scalerWebsiteTemplate.pythonHtml,
+    );
+
+    console.log("📄 Creating interview-prep.html...");
+    await createFile(
+      path.join(outputDir, "interview-prep.html"),
+      scalerWebsiteTemplate.interviewHtml,
+    );
+
     console.log("\n✅ Website files created successfully!");
     console.log(`📍 Location: ${outputDir}`);
 
