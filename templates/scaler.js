@@ -122,12 +122,10 @@ export const scalerWebsiteTemplate = {
     <section class="contact" id="contact">
         <div class="container">
             <h2>Get in Touch</h2>
-            <form class="contact-form">
-                <input type="email" placeholder="Your email" required>
-                <input type="text" placeholder="Your name" required>
-                <textarea placeholder="Your message" rows="5" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
+            <div class="contact-info">
+                <p>Email: info@scaler.com</p>
+                <p>Phone: +1-800-SCALER-1</p>
+            </div>
         </div>
     </section>
 
@@ -621,16 +619,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
-// Form submission handler
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        alert('Thank you for your message! We will get back to you soon.');
-        this.reset();
-    });
-}
 
 // Button interactions
 document.querySelectorAll('button').forEach(button => {
