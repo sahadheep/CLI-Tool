@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { OpenAI } from "openai";
+import Groq from "groq-sdk";
 import readlineSync from "readline-sync";
 import {
   createFolder,
@@ -15,7 +15,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const client = new OpenAI({
+const client = new Groq({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
@@ -97,7 +97,7 @@ Current task: ${userMessage}`,
 
     try {
       const response = await client.chat.completions.create({
-        model: "gpt-4o-mini",
+        model: "llama-3.1-70b-versatile",
         messages: conversationMessages,
         temperature: 0.7,
       });

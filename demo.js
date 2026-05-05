@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { OpenAI } from "openai";
+import Groq from "groq-sdk";
 import {
   createFolder,
   createFile,
@@ -9,7 +9,7 @@ import {
 import { executeCommand, openInBrowser } from "./tools/executor.js";
 import scalerWebsiteTemplate from "./templates/scaler.js";
 
-const client = new OpenAI({
+const client = new Groq({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
@@ -91,7 +91,7 @@ Current task: ${userMessage}`,
 
     try {
       const response = await client.chat.completions.create({
-        model: "gpt-4o-mini",
+        model: "llama-3.1-70b-versatile",
         messages: conversationMessages,
         temperature: 0.7,
       });

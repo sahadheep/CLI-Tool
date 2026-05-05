@@ -19,9 +19,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.0.3",
     "axios": "^1.6.0",
-    "openai": "^4.20.0",
+    "dotenv": "^16.0.3",
+    "groq-sdk": "^0.3.3",
     "readline-sync": "^1.4.10"
   }
 }
